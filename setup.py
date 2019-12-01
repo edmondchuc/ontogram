@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="ontogram",
-    version="0.1.0",
+    version="0.1.0.post1",
     author="Edmond Chuc",
     author_email="edmond.chuc@gmail.com",
     description="Ontogram is an OWL ontology diagram generator.",
