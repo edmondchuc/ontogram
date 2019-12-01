@@ -1,0 +1,397 @@
+# baseURI: https://w3id.org/tern/ontologies/org/
+# prefix: tern-org
+
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix tern-org: <https://w3id.org/tern/ontologies/org/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://linkeddata.tern.org.au/def/agent/a083902d-d821-41be-b663-1d7cb33eea66>
+  a schema:Organization ;
+  schema:name "Terrestrial Ecoystem Research Network" ;
+  schema:url <https://www.tern.org.au/> ;
+.
+schema:Organization
+  a owl:Class ;
+  rdfs:comment "An organization such as a school, NGO, corporation, club, etc." ;
+  rdfs:label "Organization" ;
+  rdfs:subClassOf prov:Agent ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty schema:name ;
+    ] ;
+  owl:equivalentClass org:Organization ;
+.
+schema:Person
+  a owl:Class ;
+  dct:source <http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_rNews> ;
+  rdfs:comment "A person (alive, dead, undead, or fictional)." ;
+  rdfs:label "Person" ;
+  rdfs:subClassOf prov:Agent ;
+  owl:equivalentClass foaf:Person ;
+.
+schema:Thing
+  a owl:Class ;
+  rdfs:comment "The most generic type of item." ;
+  rdfs:label "Thing" ;
+  owl:equivalentClass owl:Thing ;
+.
+schema:address
+  a rdf:Property ;
+  schema:domainIncludes schema:GeoCoordinates ;
+  schema:domainIncludes schema:GeoShape ;
+  schema:domainIncludes schema:Organization ;
+  schema:domainIncludes schema:Person ;
+  schema:domainIncludes schema:Place ;
+  schema:rangeIncludes schema:PostalAddress ;
+  schema:rangeIncludes schema:Text ;
+  rdfs:comment "Physical address of the item." ;
+  rdfs:domain prov:Agent ;
+  rdfs:label "address" ;
+  rdfs:range xsd:anyURI ;
+.
+schema:affiliation
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  schema:domainIncludes schema:Person ;
+  schema:rangeIncludes schema:Organization ;
+  rdfs:comment "An organization that this person is affiliated with. For example, a school/university, a club, or a team." ;
+  rdfs:domain schema:Person ;
+  rdfs:label "affiliation" ;
+  rdfs:range schema:Organization ;
+  rdfs:subPropertyOf schema:memberOf ;
+.
+schema:alternateName
+  a rdf:Property ;
+  schema:domainIncludes schema:Thing ;
+  schema:rangeIncludes schema:Text ;
+  rdfs:comment "An alias for the item." ;
+  rdfs:domain schema:Thing ;
+  rdfs:label "alternateName" ;
+  rdfs:range rdfs:Literal ;
+.
+schema:description
+  a rdf:Property ;
+  schema:domainIncludes schema:Thing ;
+  schema:rangeIncludes schema:Text ;
+  rdfs:comment "A description of the item." ;
+  rdfs:domain schema:Thing ;
+  rdfs:label "description" ;
+  rdfs:range rdfs:Literal ;
+  owl:equivalentProperty dct:description ;
+.
+schema:dissolutionDate
+  a rdf:Property ;
+  schema:domainIncludes schema:Organization ;
+  schema:rangeIncludes schema:Date ;
+  rdfs:comment "The date that this organization was dissolved." ;
+  rdfs:domain schema:Organization ;
+  rdfs:label "dissolutionDate" ;
+  rdfs:range xsd:date ;
+.
+schema:email
+  a rdf:Property ;
+  schema:domainIncludes schema:ContactPoint ;
+  schema:domainIncludes schema:Organization ;
+  schema:domainIncludes schema:Person ;
+  schema:rangeIncludes schema:Text ;
+  rdfs:comment "Email address." ;
+  rdfs:domain prov:Agent ;
+  rdfs:label "email" ;
+  rdfs:range rdfs:Literal ;
+.
+schema:foundingDate
+  a rdf:Property ;
+  schema:domainIncludes schema:Organization ;
+  schema:rangeIncludes schema:Date ;
+  rdfs:comment "The date that this organization was founded." ;
+  rdfs:domain schema:Organization ;
+  rdfs:label "foundingDate" ;
+  rdfs:range xsd:date ;
+.
+schema:honorificPrefix
+  a rdf:Property ;
+  schema:domainIncludes schema:Person ;
+  schema:rangeIncludes schema:Text ;
+  rdfs:comment "An honorific prefix preceding a Person's name such as Dr/Mrs/Mr." ;
+  rdfs:domain schema:Person ;
+  rdfs:label "honorificPrefix" ;
+  rdfs:range rdfs:Literal ;
+.
+schema:identifier
+  a rdf:Property ;
+  schema:domainIncludes schema:Thing ;
+  schema:rangeIncludes schema:PropertyValue ;
+  schema:rangeIncludes schema:Text ;
+  schema:rangeIncludes schema:URL ;
+  rdfs:comment "The identifier property represents any kind of identifier for any kind of <a class=\"localLink\" href=\"http://schema.org/Thing\">Thing</a>, such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See <a href=\"/docs/datamodel.html#identifierBg\">background notes</a> for more details." ;
+  rdfs:domain schema:Thing ;
+  rdfs:label "identifier" ;
+.
+schema:image
+  a rdf:Property ;
+  schema:domainIncludes schema:Thing ;
+  schema:rangeIncludes schema:ImageObject ;
+  schema:rangeIncludes schema:URL ;
+  rdfs:comment "An image of the item. This can be a <a class=\"localLink\" href=\"http://schema.org/URL\">URL</a> or a fully described <a class=\"localLink\" href=\"http://schema.org/ImageObject\">ImageObject</a>." ;
+  rdfs:domain schema:Thing ;
+  rdfs:label "image" ;
+.
+schema:jobTitle
+  a rdf:Property ;
+  schema:domainIncludes schema:Person ;
+  schema:rangeIncludes schema:DefinedTerm ;
+  schema:rangeIncludes schema:Text ;
+  rdfs:comment "The job title of the person (for example, Financial Manager)." ;
+  rdfs:domain schema:Person ;
+  rdfs:label "Job title" ;
+  rdfs:range rdfs:Literal ;
+.
+schema:member
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  schema:domainIncludes schema:Organization ;
+  schema:domainIncludes schema:ProgramMembership ;
+  schema:inverseOf schema:memberOf ;
+  schema:rangeIncludes schema:Organization ;
+  schema:rangeIncludes schema:Person ;
+  rdfs:comment "A member of an Organization or a ProgramMembership. Organizations can be members of organizations; ProgramMembership is typically for individuals." ;
+  rdfs:domain schema:Organization ;
+  rdfs:label "member" ;
+  rdfs:range prov:Agent ;
+.
+schema:memberOf
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  schema:domainIncludes schema:Organization ;
+  schema:domainIncludes schema:Person ;
+  schema:inverseOf schema:member ;
+  schema:rangeIncludes schema:Organization ;
+  schema:rangeIncludes schema:ProgramMembership ;
+  rdfs:comment "An Organization (or ProgramMembership) to which this Person or Organization belongs." ;
+  rdfs:domain prov:Agent ;
+  rdfs:label "memberOf" ;
+  rdfs:range schema:Organization ;
+.
+schema:name
+  a rdf:Property ;
+  schema:domainIncludes schema:Thing ;
+  schema:rangeIncludes schema:Text ;
+  rdfs:comment "The name of the item." ;
+  rdfs:domain schema:Thing ;
+  rdfs:label "name" ;
+  rdfs:range rdfs:Literal ;
+  rdfs:subPropertyOf rdfs:label ;
+  owl:equivalentProperty dct:title ;
+.
+schema:parentOrganization
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  schema:domainIncludes schema:Organization ;
+  schema:inverseOf schema:subOrganization ;
+  schema:rangeIncludes schema:Organization ;
+  rdfs:comment "The larger organization that this organization is a <a class=\"localLink\" href=\"http://schema.org/subOrganization\">subOrganization</a> of, if any." ;
+  rdfs:domain schema:Organization ;
+  rdfs:label "parentOrganization" ;
+  rdfs:range schema:Organization ;
+  owl:inverseOf schema:subOrganization ;
+.
+schema:sameAs
+  a rdf:Property ;
+  schema:domainIncludes schema:Thing ;
+  schema:rangeIncludes schema:URL ;
+  rdfs:comment "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website." ;
+  rdfs:domain schema:Thing ;
+  rdfs:label "sameAs" ;
+  rdfs:range xsd:anyURI ;
+.
+schema:subOrganization
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  schema:domainIncludes schema:Organization ;
+  schema:inverseOf schema:parentOrganization ;
+  schema:rangeIncludes schema:Organization ;
+  rdfs:comment "A relationship between two organizations where the first includes the second, e.g., as a subsidiary. See also: the more specific 'department' property." ;
+  rdfs:domain schema:Organization ;
+  rdfs:label "subOrganization" ;
+  rdfs:range schema:Organization ;
+  owl:inverseOf schema:parentOrganization ;
+.
+schema:taxID
+  a rdf:Property ;
+  dct:source <http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_GoodRelationsTerms> ;
+  schema:domainIncludes schema:Organization ;
+  schema:domainIncludes schema:Person ;
+  schema:rangeIncludes schema:Text ;
+  rdfs:comment "The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain." ;
+  rdfs:domain schema:Organization ;
+  rdfs:label "taxID" ;
+  rdfs:range rdfs:Literal ;
+  rdfs:subPropertyOf schema:identifier ;
+.
+schema:telephone
+  a rdf:Property ;
+  schema:domainIncludes schema:ContactPoint ;
+  schema:domainIncludes schema:Organization ;
+  schema:domainIncludes schema:Person ;
+  schema:domainIncludes schema:Place ;
+  schema:rangeIncludes schema:Text ;
+  rdfs:comment "The telephone number." ;
+  rdfs:domain prov:Agent ;
+  rdfs:label "telephone" ;
+  rdfs:range rdfs:Literal ;
+.
+schema:url
+  a rdf:Property ;
+  schema:domainIncludes schema:Thing ;
+  schema:rangeIncludes schema:URL ;
+  rdfs:comment "URL of the item." ;
+  rdfs:domain schema:Thing ;
+  rdfs:label "url" ;
+  rdfs:range xsd:anyURI ;
+.
+org:ChangeEvent
+  a rdfs:Class ;
+  a owl:Class ;
+  rdfs:comment "Represents an event which resulted in a major change to an organization such as a merger or complete restructuring. It is intended for situations where the resulting organization is sufficient distinct from the original organizations that it has a distinct identity and distinct URI. Extension vocabularies should define sub-classes of this to denote particular categories of event. The instant or interval at which the event occurred should be given by `prov:startAtTime` and `prov:endedAtTime`, a description should be given by `dct:description`. "@en ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+  rdfs:label "Change Event"@en ;
+  rdfs:subClassOf prov:Activity ;
+.
+org:changedBy
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:comment "Indicates a change event which resulted in a change to this organization. Depending on the event the organization may or may not have continued to exist after the event. Inverse of `org:originalOrganization`."@en ;
+  rdfs:domain org:Organization ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+  rdfs:label "changed by"@en ;
+  rdfs:range org:ChangeEvent ;
+.
+org:originalOrganization
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:comment "Indicates one or more organizations that existed before the change event. Depending on the event they may or may not have continued to exist after the event. Inverse of `org:changedBy`."@en ;
+  rdfs:domain org:ChangeEvent ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+  rdfs:label "original organization"@en ;
+  rdfs:range org:Organization ;
+  rdfs:subPropertyOf prov:used ;
+.
+org:resultedFrom
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:comment "Indicates an event which resulted in this organization. Inverse of `org:resultingOrganization`."@en ;
+  rdfs:domain org:Organization ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+  rdfs:label "resulted from"@en ;
+  rdfs:range org:ChangeEvent ;
+  rdfs:subPropertyOf prov:wasGeneratedBy ;
+.
+org:resultingOrganization
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:comment "Indicates an organization which was created or changed as a result of the event. Inverse of `org:resultedFrom`."@en ;
+  rdfs:domain org:ChangeEvent ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+  rdfs:label "resulted in"@en ;
+  rdfs:range org:Organization ;
+.
+prov:Agent
+  a owl:Class ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/prov-o#> ;
+  rdfs:label "Agent" ;
+  rdfs:subClassOf schema:Thing ;
+  owl:disjointWith prov:InstantaneousEvent ;
+  owl:equivalentClass foaf:Agent ;
+  prov:category "starting-point" ;
+  prov:component "agents-responsibility" ;
+  prov:definition "An agent is something that bears some form of responsibility for an activity taking place, for the existence of an entity, or for another agent's activity. "@en ;
+  prov:dm "http://www.w3.org/TR/2013/REC-prov-dm-20130430/#term-agent"^^xsd:anyURI ;
+  prov:n "http://www.w3.org/TR/2013/REC-prov-n-20130430/#expression-Agent"^^xsd:anyURI ;
+.
+tern-org:
+  a owl:Ontology ;
+  dct:created "2019-11-23"^^xsd:date ;
+  dct:creator [
+      a schema:Person ;
+      schema:affiliation <http://linkeddata.tern.org.au/def/agent/a083902d-d821-41be-b663-1d7cb33eea66> ;
+      schema:email "e.chuc@uq.edu.au" ;
+      schema:identifier "https://orcid.org/0000-0002-6047-9864" ;
+      schema:name "Edmond Chuc" ;
+    ] ;
+  dct:modified "2019-11-24"^^xsd:date ;
+  dct:publisher <http://linkeddata.tern.org.au/def/agent/a083902d-d821-41be-b663-1d7cb33eea66> ;
+  vann:preferredNamespacePrefix "tern-org" ;
+  vann:preferredNamespaceUri "https://w3id.org/tern/ontologies/org/" ;
+  rdfs:comment "A small profile of schema.org and the W3C Organisations ontology containing several classes to describe people and organisations with additional properties. " ;
+  rdfs:label "TERN Organisations Ontology" ;
+  rdfs:seeAlso <https://github.com/ternaustralia/ontology_tern-org> ;
+  owl:versionIRI <https://w3id.org/tern/ontologies/org/0.1> ;
+  owl:versionInfo "Draft" ;
+.
+tern-org:Academic
+  a owl:Class ;
+  rdfs:comment "Academic institutes like Universities." ;
+  rdfs:label "Academic Institutes" ;
+  rdfs:subClassOf tern-org:Institution ;
+.
+tern-org:Commercial
+  a owl:Class ;
+  rdfs:comment "Commercial organizations from the industry." ;
+  rdfs:label "Commercial Organization" ;
+  rdfs:subClassOf schema:Organization ;
+.
+tern-org:Federal
+  a owl:Class ;
+  rdfs:comment "Federal government organizations and agencies." ;
+  rdfs:label "Federal Government" ;
+  rdfs:subClassOf schema:Organization ;
+.
+tern-org:GovernmentFunded
+  a owl:Class ;
+  rdfs:comment "Organizations funded by the government." ;
+  rdfs:label "Government Funded" ;
+  rdfs:subClassOf tern-org:Institution ;
+.
+tern-org:Institution
+  a owl:Class ;
+  rdfs:comment "An organization founded for a religious, educational, professional, or social purpose." ;
+  rdfs:label "Institution" ;
+  rdfs:subClassOf schema:Organization ;
+.
+tern-org:International
+  a owl:Class ;
+  rdfs:comment "International organizations." ;
+  rdfs:label "International Organization" ;
+  rdfs:subClassOf schema:Organization ;
+.
+tern-org:NCRIS
+  a owl:Class ;
+  rdfs:comment "National Collaborative Research Infrastructure Strategy (NCRIS) is a national network of world-class research infrastructure projects that support high-quality research that will drive greater innovation in the Australian research sector and the economy more broadly. Projects support strategically important research through which Australian researchers and their international partners can address key national and global challenges." ;
+  rdfs:label "NCRIS" ;
+  rdfs:seeAlso <https://www.education.gov.au/national-collaborative-research-infrastructure-strategy-ncris> ;
+  rdfs:subClassOf tern-org:GovernmentFunded ;
+.
+tern-org:agorID
+  a rdf:Property ;
+  schema:domainIncludes schema:Organization ;
+  schema:rangeIncludes schema:Text ;
+  rdfs:comment "The Australian Government Organisations Register ID" ;
+  rdfs:domain schema:Organization ;
+  rdfs:label "AGOR ID" ;
+  rdfs:range rdfs:Literal ;
+  rdfs:seeAlso <https://data.gov.au/data/dataset/australian-government-organisations-register> ;
+  rdfs:subPropertyOf schema:identifier ;
+.
