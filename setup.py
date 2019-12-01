@@ -29,5 +29,6 @@ setuptools.setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     python_requires='>=3.6',
-    entry_points={'console_scripts': ['ontogram = ontogram.cli:main']}
+    entry_points={'console_scripts': ['ontogram = ontogram.cli:main']},
+    install_requires=['rdflib', 'click', 'plantuml'],
 )
