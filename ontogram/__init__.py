@@ -234,8 +234,8 @@ def _get_creator(g):
         if name:
             plant_uml += f'Creator: {name} '
         if email:
-            plant_uml += f'({email}) \n'
-        plant_uml += 'endheader\n'
+            plant_uml += f'({email}) '
+        plant_uml += '\nendheader\n'
     return plant_uml
 
 
