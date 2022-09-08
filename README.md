@@ -25,11 +25,6 @@ pip3 install ontogram
 
 ## Usage
 
-### Web service
-
-*Coming soon.*
-
-
 ### Command line application
 
 ```
@@ -75,12 +70,3 @@ ontogram.svg_file('ontology.ttl.svg')
 ```
 
 See the [examples](examples) directory for example outputs.
-
-
-## Docker image for diagram generation within pyLODE
-
-A Docker image has been created to automatically embed the generated diagram into a pyLODE document. See https://github.com/edmondchuc/docker-pylode
-
-See the pyLODE output with the generated ontology diagram: https://w3id.org/tern/ontologies/org
-
-A more formal integration with pyLODE will be coming soon.
