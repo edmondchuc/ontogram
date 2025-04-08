@@ -10,14 +10,18 @@ class Ontogram:
     Ontogram class accepts an OWL ontology file and provides methods
     to produce a PlantUML-based diagram.
     """
-    def __init__(self, filepath : str, format='turtle'):
+    def __init__(self, filepath : str, format='turtle', headers = []):
         """
 
         :param filepath: File path of the OWL ontology file.
         :param format: RDF serialization of the OWl ontology file. Options: ['turtle', 'xml', 'nt', 'n3'].
+        :param header: PlantUML configuration header
         """
         self.g = Graph().parse(filepath, format=format)
         self._plantuml = '@startuml\n'
+        if headers:
+            self._plantuml += '\n'.join(headers)
+            self._plantuml += '\n'
         self._plantuml += _get_ontology_title(self.g)
         self._plantuml += _get_subclass_relationship(self.g)
         self._plantuml += _get_class_definition(self.g)

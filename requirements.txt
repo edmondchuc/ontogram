@@ -1,3 +1,4 @@
 rdflib
 click
+six
 plantuml
